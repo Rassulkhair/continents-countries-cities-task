@@ -10,10 +10,11 @@ public class Main {
             System.out.println("2. Создать континент");
             System.out.println("3. Удалить континент");
             System.out.println("4. Получить города по странам");
+            System.out.println("5. Обновить город");
             System.out.println("0. Выйти");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // чтобы съесть \n
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> {
@@ -23,6 +24,7 @@ public class Main {
                 case 2 -> ContinentService.createContinent();
                 case 3 -> ContinentService.deleteContinentById();
                 case 4 -> CityService.getCitiesByCountries();
+                case 5 -> CityService.updateCity();
                 case 0 -> {
                     System.out.println("Выход...");
                     return;

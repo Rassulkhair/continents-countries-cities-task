@@ -35,4 +35,35 @@ public class CityService {
             throw new RuntimeException(e);
         }
     }
+
+    public static void updateCity(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите id города, который хотите обновить: ");
+        int cityId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Введите новое название для города: ");
+        String newName = scanner.nextLine();
+
+        System.out.println("Введите новое население: ");
+        int newPopulation  = scanner.nextInt();
+
+        String sql = """
+                UPDATE cities 
+                SET name = ?, population = ?
+                WHERE id = ?
+                """;
+
+        try {
+            Connection connection = ConnectionService.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, newName);
+            ps.setInt(2, newPopulation);
+            ps.setInt(3, cityId);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
